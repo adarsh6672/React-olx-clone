@@ -2,7 +2,8 @@ import React, { useState ,useContext} from 'react';
 
 import Logo from '../../olx-logo.png';
 import './Signup.css';
-import { FirebaseContext } from '../../store/FirebaseContext';
+import { UserAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function Signup() {
 
@@ -10,11 +11,22 @@ export default function Signup() {
   const [password , setPassword]=useState('');
   const [email , setEmail]=useState('');
   const [phone , setPhone] =useState('');
-  const {firebase}=useContext(FirebaseContext)
+  const {user , signUp}= UserAuth()
+  const navigate= useNavigate();
 
-  const handleSubmit =(e)=>{
+  const handleSubmit =async (e)=>{
     e.preventDefault();
-    console.log(firebase)
+    try{
+      await signUp(email,password,phone,username)
+      console.log('signed in')
+      navigate('/login')
+
+      
+    }
+    catch(error){
+      console.log(error)
+    }
+    
   }
 
   return (

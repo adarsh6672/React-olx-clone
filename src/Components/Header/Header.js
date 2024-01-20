@@ -6,7 +6,26 @@ import Search from '../../assets/Search';
 import Arrow from '../../assets/Arrow';
 import SellButton from '../../assets/SellButton';
 import SellButtonPlus from '../../assets/SellButtonPlus';
+import { UserAuth } from '../../context/AuthContext';
+import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
 function Header() {
+
+  const {user ,logOut}=UserAuth();
+  const navigate = useNavigate();
+
+  const logOutHandler=async ()=>{
+    try{
+      await logOut();
+      navigate('login')
+      console.log('logged out')
+    }catch(error){
+      console.log(error)
+    }
+  }
+
+
   return (
     <div className="headerParentDiv">
       <div className="headerChildDiv">
@@ -33,16 +52,36 @@ function Header() {
           <span> ENGLISH </span>
           <Arrow></Arrow>
         </div>
-        <div className="loginPage">
-          <span>Login</span>
-          <hr />
-        </div>
+        {user?.email ?
+          (
+            <>
+              <div className="loginPage">
+                <a>Account</a>
+                <hr />
+              </div>
+              <div className="loginPage">
+                <a onClick={logOutHandler}>Log Out</a>
+                <hr />
+              </div> 
+              </>
+          ):(
+            <div className="loginPage">
+              <Link to='login'>
+              <a>Login</a>
+              <hr />
+              </ Link>
+            </div>
+          )
+        }
+        
 
         <div className="sellMenu">
           <SellButton></SellButton>
           <div className="sellMenuContent">
             <SellButtonPlus></SellButtonPlus>
+            <Link to='create'>
             <span>SELL</span>
+            </Link>
           </div>
         </div>
       </div>

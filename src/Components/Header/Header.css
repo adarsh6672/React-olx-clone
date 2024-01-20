@@ -114,6 +114,8 @@
 
 .loginPage a{
   text-decoration: none;
+  cursor: pointer;
+  color: black;
 }
 
 .sellMenu {
