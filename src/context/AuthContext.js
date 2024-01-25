@@ -16,7 +16,8 @@ export function AuthContextProvider({children}) {
                 addDoc(collection(db,'users'),{
                     id:result.user.uid,
                     phone:phone,
-                    username:username
+                    username:username,
+                    email:email,
                 })
             
             

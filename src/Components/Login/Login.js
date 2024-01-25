@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { UserAuth } from '../../context/AuthContext';
 import Logo from '../../olx-logo.png';
 import './Login.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function  Login() {
   const[email , setEmail]=useState('')
@@ -48,7 +48,7 @@ function  Login() {
           <br />
           <button>Login</button>
         </form>
-        <a>Signup</a>
+        <Link to='/signup'>Signup</Link>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import Logo from '../../olx-logo.png';
 import './Signup.css';
 import { UserAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Signup() {
 
@@ -85,7 +86,7 @@ export default function Signup() {
           <br />
           <button>Signup</button>
         </form>
-        <a>Login</a>
+        <Link to='/login'>Login</Link>
       </div>
     </div>
   );

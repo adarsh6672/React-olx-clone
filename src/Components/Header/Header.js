@@ -18,7 +18,7 @@ function Header() {
   const logOutHandler=async ()=>{
     try{
       await logOut();
-      navigate('login')
+      navigate('/login')
       console.log('logged out')
     }catch(error){
       console.log(error)
@@ -29,7 +29,7 @@ function Header() {
   return (
     <div className="headerParentDiv">
       <div className="headerChildDiv">
-        <div className="brandName">
+        <div className="brandName" onClick={()=>navigate('/')}>
           <OlxLogo></OlxLogo>
         </div>
         <div className="placeSearch">

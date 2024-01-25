@@ -5,11 +5,13 @@ import { storage,db } from '../../firebase/config';
 import { UserAuth } from '../../context/AuthContext';
 import {getStorage , ref , uploadBytes ,getDownloadURL} from 'firebase/storage'
 import { Firestore, addDoc,collection } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 
 const Create = () => {
 
   const{user}=UserAuth()
+  const navigate=useNavigate();
   
 
   const [name ,setName]= useState('')
@@ -33,12 +35,13 @@ const Create = () => {
             price:price,
             url:url,
             userId:user.uid,
-            created:date.toString()
+            created:date.toDateString()
           });
           console.log('file avilable' ,url)
           })
         })
         console.log('Uploaded a blob or file!');
+        navigate('/')
       }
     catch(error){
       console.log(error)
@@ -88,7 +91,9 @@ const Create = () => {
             <br />
           
           <br />
-          <img  alt="Posts" width="200px" height="200px" src={image ? URL.createObjectURL(image):''}></img>
+          {image ?(< img  alt="Posts" width="200px" height="200px" src={image ? URL.createObjectURL(image):''}></img>) :(<div></div>) }
+          
+         
           
             <br />
             <input
